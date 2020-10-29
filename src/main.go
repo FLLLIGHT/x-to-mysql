@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	tableName := "room"
+	tableName := "student"
 	db, err := sql.Open("mysql", "root:541978@/test")
 	if err != nil {
 		panic(err)
@@ -20,14 +20,15 @@ func main() {
 
 	defer db.Close()
 
-	fieldInfo := ParseMySQLTableSchema("test", "room", db)
+	fieldInfo := ParseMySQLTableSchema("test", tableName, db)
 
 	fmt.Println(len(fieldInfo))
 	for _, item := range fieldInfo {
 		fmt.Println(item)
 	}
 
-	myMap := ReadFromSQLite("xxxdatabase.db", "room")
+	myMap := ReadFromCSV("./student.csv")
+	//myMap := ReadFromSQLite("xxxdatabase.db", tableName)
 
 	stmtStr := "INSERT INTO " + tableName + " VALUES("
 	for _, _ = range myMap[0] {
@@ -37,7 +38,15 @@ func main() {
 	stmtStr = stmtStr[0:len(stmtStr)-1]
 	stmtStr += ")"
 	fmt.Println(stmtStr)
-	stmt, err := db.Prepare(stmtStr)
+	conn, err := db.Begin()
+	if err != nil {
+		return
+	}
+	stmt, err := conn.Prepare(stmtStr)
+	if err != nil {
+		panic(err)
+	}
+	defer stmt.Close()
 	if err != nil {
 		panic(err)
 	}
@@ -56,13 +65,20 @@ func main() {
 				colPtrs[i] = val
 			}
 			if fieldInfo[i].dataType == "datetime" {
-				colPtrs[i] = val
+				layout := "2006-01-02 15:04"
+				colPtrs[i], err = time.ParseInLocation(layout, val, time.Local)
+				if err != nil {
+					panic(err)
+				}
 			}
 		}
-		_, err = stmt.Exec(colPtrs...)
-		if err != nil {
+
+		if _, err := stmt.Exec(colPtrs...); err != nil{
 			panic(err)
 		}
 	}
 
+	if err := conn.Commit(); err != nil {
+		panic(err)
+	}
 }
