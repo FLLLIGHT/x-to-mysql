@@ -18,6 +18,7 @@ package cmd
 import (
 	"encoding/csv"
 	"fmt"
+	"github.com/FLLLIGHT/x-to-mysql/utils"
 	"github.com/djimenez/iconv-go"
 	"github.com/saintfish/chardet"
 	"github.com/spf13/cobra"
@@ -25,7 +26,6 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
-	"x-to-mysql/utils"
 )
 
 // csvCmd represents the csv command

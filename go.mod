@@ -1,4 +1,4 @@
-module x-to-mysql
+module github.com/FLLLIGHT/x-to-mysql
 
 go 1.13
 

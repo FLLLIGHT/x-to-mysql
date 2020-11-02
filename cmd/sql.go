@@ -16,9 +16,9 @@ limitations under the License.
 package cmd
 
 import (
+	"github.com/FLLLIGHT/x-to-mysql/utils"
 	"io/ioutil"
 	"os"
-	"x-to-mysql/utils"
 
 	"github.com/spf13/cobra"
 )

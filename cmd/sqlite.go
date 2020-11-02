@@ -21,8 +21,8 @@ import (
 	"log"
 	_ "modernc.org/sqlite"
 
+	"github.com/FLLLIGHT/x-to-mysql/utils"
 	"github.com/spf13/cobra"
-	"x-to-mysql/utils"
 )
 
 var (
