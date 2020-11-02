@@ -20,13 +20,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a13c39ae-fa67-4a81-a112-bd81624ee191" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/room.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/readFromCSV.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/student.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/csv.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/root.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/sql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/sqlite.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cobra" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/AssembleSQLStatement.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/ConnectToMySQL.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/ExecuteInsert.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/ParseMySQLTableSchema.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parseMySQLTableSchema.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readFromCSV.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readFromSQLite.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,25 +120,29 @@
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="616" y="418" width="400" height="323" key="#Go_Modules/0.28.1920.1052@0.28.1920.1052" timestamp="1603970459249" />
-    <state width="1336" height="252" key="GridCell.Tab.0.bottom" timestamp="1603990178600">
+    <state x="749" y="346" width="567" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604139762017">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1336" height="252" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1603990178600" />
-    <state width="1336" height="252" key="GridCell.Tab.0.center" timestamp="1603990178600">
+    <state x="749" y="346" width="567" height="410" key="#com.intellij.fileTypes.FileTypeChooser/0.28.1920.1052@0.28.1920.1052" timestamp="1604139762017" />
+    <state width="1336" height="252" key="GridCell.Tab.0.bottom" timestamp="1604041450981">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1336" height="252" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1603990178600" />
-    <state width="1336" height="252" key="GridCell.Tab.0.left" timestamp="1603990178600">
+    <state width="1336" height="252" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1604041450981" />
+    <state width="1336" height="252" key="GridCell.Tab.0.center" timestamp="1604041450981">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1336" height="252" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1603990178600" />
-    <state width="1336" height="252" key="GridCell.Tab.0.right" timestamp="1603990178600">
+    <state width="1336" height="252" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1604041450981" />
+    <state width="1336" height="252" key="GridCell.Tab.0.left" timestamp="1604041450981">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state width="1336" height="252" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1603990178600" />
-    <state x="214" y="179" key="SettingsEditor" timestamp="1603971240944">
+    <state width="1336" height="252" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1604041450981" />
+    <state width="1336" height="252" key="GridCell.Tab.0.right" timestamp="1604041450981">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state x="214" y="179" key="SettingsEditor/0.28.1920.1052@0.28.1920.1052" timestamp="1603971240944" />
+    <state width="1336" height="252" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1604041450981" />
+    <state x="214" y="179" key="SettingsEditor" timestamp="1604080393292">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="214" y="179" key="SettingsEditor/0.28.1920.1052@0.28.1920.1052" timestamp="1604080393292" />
   </component>
 </project>
