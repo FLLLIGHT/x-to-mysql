@@ -1,5 +1,5 @@
 /*
-Copyright © 2020 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 Xuan Zitao <18302010015@fudan.edu.cn>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "x-to-mysql/cmd"
+import "github.com/FLLLIGHT/x-to-mysql/cmd"
 
 func main() {
 	cmd.Execute()
