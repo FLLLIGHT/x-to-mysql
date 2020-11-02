@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 	"x-to-mysql/utils"
@@ -30,6 +29,7 @@ var sqlCmd = &cobra.Command{
 	Short: "执行sql文件中的sql语句",
 	Long: `使用sql命令，可以从指定的sql文件中读取sql语句，并在指定的MySQL数据库中执行这些语句。`,
 	Run: func(cmd *cobra.Command, args []string) {
+		//读sql文件
 		sqlFile, err := os.Open(dataSource)
 		if err != nil {
 			panic(err)
@@ -37,8 +37,8 @@ var sqlCmd = &cobra.Command{
 		defer sqlFile.Close()
 		sqlBytes, err := ioutil.ReadAll(sqlFile)
 		sqlStr := string(sqlBytes[:])
-		fmt.Println(sqlStr)
 
+		//连数据库并执行sql语句
 		db := utils.ConnectToMySQL(username, password, toDatabase)
 		defer db.Close()
 		_, err = db.Exec(sqlStr)

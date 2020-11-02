@@ -24,7 +24,6 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"strconv"
 	"strings"
 	"x-to-mysql/utils"
 )
@@ -36,11 +35,16 @@ var csvCmd = &cobra.Command{
 	Long: `使用csv指令，可以从指定的csv文件中读取数据，并将数据插入指定的MySQL数据库的table中`,
 
 	Run: func(cmd *cobra.Command, args []string) {
+		//连数据库
 		db := utils.ConnectToMySQL(username, password, toDatabase)
 		defer db.Close()
+		//读目标表的表结构
 		fieldInfo := utils.ParseMySQLTableSchema(toDatabase, toTableName, db)
+		//读csv文件
 		myMap := ReadFromCSV(dataSource)
-		stmtStr := utils.AssembleSQLStatement(toTableName, myMap)
+		//根据目标表的表结构组装prepare statement
+		stmtStr := utils.AssembleSQLStatement(toTableName, len(fieldInfo))
+		//执行插入语句
 		utils.ExecuteInsert(myMap, stmtStr, db, fieldInfo)
 	},
 }
@@ -79,17 +83,16 @@ func ReadFromCSV(dataSource string) map[int][]string {
 	r := csv.NewReader(csvFile)
 
 	var fromEncoding string
-	var rs chardet.Result
-	//猜测字符集charset并输出
+	//如果没有设置flag并指定字符集，则猜测字符集charset
 	if encoding == "" {
 		detector := chardet.NewTextDetector()
 		all, _ := ioutil.ReadAll(csvFile)
+		//将reader重新seek回头部，不然待会读不出了
 		_, err = csvFile.Seek(0, 0)
 		if err != nil {
 			panic(err)
 		}
 		rs, _ := detector.DetectBest(all)
-		fmt.Println(rs.Charset + ":" + strconv.Itoa(rs.Confidence))
 
 		if strings.HasPrefix(rs.Charset, "GB") {
 			fromEncoding = "gbk"
@@ -99,28 +102,29 @@ func ReadFromCSV(dataSource string) map[int][]string {
 	} else {
 		fromEncoding = encoding
 	}
+	fmt.Println("CSV Charset: "+fromEncoding)
 
 	count := -1
 	for{
 		record, err := r.Read()
+		//读到文件结尾为止
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
 			panic(err)
 		}
-		if count == -1{
-			for _, r := range record {
-				fmt.Println(r)
-			}
-		} else {
+		// 跳过第一行
+		if count != -1 {
+			//遍历行内所有数据，append到对应位置
 			for _, col := range record {
-				if rs.Charset != "UTF-8" {
+				if fromEncoding != "UTF-8" {
 					col, _ = iconv.ConvertString(col, fromEncoding, "utf-8")
 				}
 				myMap[count] = append(myMap[count], col)
 			}
 		}
+		//读下一行
 		count++
 	}
 	return myMap

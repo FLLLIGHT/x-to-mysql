@@ -7,6 +7,7 @@ import (
 )
 
 func ConnectToMySQL(username, password, tableName string) *sql.DB {
+	//连接数据库，默认在localhost:3306
 	db, err := sql.Open("mysql", username+":"+password+"@/"+tableName+"?multiStatements=true")
 	if err != nil {
 		panic(err)

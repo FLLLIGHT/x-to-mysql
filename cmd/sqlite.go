@@ -39,11 +39,16 @@ var sqliteCmd = &cobra.Command{
 	Short: "将数据从sqlite数据库导入至mysql",
 	Long: `使用sqlite指令，可以从指定的sqlite数据库(即db文件)中读取指定的表中的数据，并将数据插入指定的MySQL数据库的table中`,
 	Run: func(cmd *cobra.Command, args []string) {
+		//连数据库
 		db := utils.ConnectToMySQL(username, password, toDatabase)
 		defer db.Close()
+		//读目标表的表结构
 		fieldInfo := utils.ParseMySQLTableSchema(toDatabase, toTableName, db)
+		//读sqlite数据库
 		myMap := ReadFromSQLite(dataSource, fromTableName)
-		stmtStr := utils.AssembleSQLStatement(toTableName, myMap)
+		//根据目标表的表结构组装prepare statement
+		stmtStr := utils.AssembleSQLStatement(toTableName, len(fieldInfo))
+		//执行插入语句
 		utils.ExecuteInsert(myMap, stmtStr, db, fieldInfo)
 	},
 }
