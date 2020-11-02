@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a13c39ae-fa67-4a81-a112-bd81624ee191" name="Default Changelist" comment="" />
+    <list default="true" id="a13c39ae-fa67-4a81-a112-bd81624ee191" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/cmd/sqlite.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/sqlite.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -18,8 +18,8 @@ package cmd
 import (
 	"database/sql"
 	"fmt"
+	_ "github.com/mattn/go-sqlite3"
 	"log"
-	_ "modernc.org/sqlite"
 
 	"github.com/FLLLIGHT/x-to-mysql/utils"
 	"github.com/spf13/cobra"
@@ -82,7 +82,7 @@ func init() {
 func ReadFromSQLite(dataSourceName, tableName string) map[int][]string{
 	fmt.Println("-----------------START READ FROM SQLite-----------------")
 
-	db, err := sql.Open("sqlite", dataSourceName)
+	db, err := sql.Open("sqlite3", dataSourceName)
 	if err != nil {
 		panic(err.Error())
 	}
